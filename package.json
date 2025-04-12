@@ -1,0 +1,32 @@
+{
+  "name": "@flancer64/smtp-logger",
+  "version": "0.1.0",
+  "description": "Command-line utility for logging email messages from stdin to a database (PostgreSQL, SQLite, etc.) using Knex.js and @teqfw/di",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "sample-debug": "node --inspect-brk index.js < ./test/sample.eml",
+    "sample-run": "node index.js < ./test/sample.eml",
+    "init-db": "node index.js init-db"
+  },
+  "keywords": [
+    "logger",
+    "email",
+    "knex",
+    "sqlite",
+    "postgresql",
+    "teqfw",
+    "dependency-injection"
+  ],
+  "author": "Alex Gusev <alex@wiedgeese.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@teqfw/di": "^0.32.0",
+    "better-sqlite3": "^11.9.1",
+    "dotenv": "^16.5.0",
+    "knex": "^3.1.0",
+    "mailparser": "^3.7.2",
+    "minimist": "^1.2.8",
+    "pg": "^8.14.1"
+  }
+}
