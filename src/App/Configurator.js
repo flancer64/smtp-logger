@@ -36,7 +36,7 @@ export default class Smtp_Log_App_Configurator {
 
             // Set database configuration parameters:
             // Use CLI parameters if provided, otherwise fallback to the corresponding environment variable.
-            res.dbClient = args.dbClient || process.env.DB_CLIENT;
+            res.dbClient = args.dbClient || process.env.DB_CLIENT || 'better-sqlite3';
             res.dbFile = args.dbFile || process.env.DB_FILE;
             res.dbHost = args.dbHost || process.env.DB_HOST;
             res.dbName = args.dbName || process.env.DB_NAME;
