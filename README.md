@@ -49,18 +49,22 @@ npm install
 
 ## Configuration
 
-Configure using either environment variables or command-line arguments:
-
-### Environment Variables
+### Example: SQLite (better-sqlite3)
 
 ```bash
-DB_CLIENT=better-sqlite3  # or pg, mysql, etc.
+DB_CLIENT=better-sqlite3
 DB_FILE=./var/data.sqlite3
-DB_HOST=localhost         # for network databases
+```
+
+### Example: Network databases (PostgreSQL, MySQL, etc.)
+
+```bash
+DB_CLIENT=pg            # or mysql, etc.
+DB_HOST=localhost
+DB_PORT=5432
 DB_NAME=mydb
 DB_USER=user
 DB_PASS=password
-DB_PORT=5432
 ```
 
 ### Command Line Arguments
@@ -102,7 +106,7 @@ cat sample.eml | node index.js log
 Edit `/etc/aliases`:
 
 ```bash
-logger: "|/usr/local/bin/smtp-logger.js"
+logger: "|/usr/local/bin/smtp-logger/index.js"
 ```
 
 Then update aliases:
@@ -121,23 +125,27 @@ always_bcc = logger@localhost
 
 ---
 
-## Database Schema
+## See the output
 
-The utility automatically creates this schema when initialized:
+Use this script (`/tmp/log.sh`) to redirect output to a file:
 
-```sql
-CREATE TABLE message
-(
-    id        INTEGER PRIMARY KEY AUTOINCREMENT,
-    ts        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    sender    TEXT,
-    recipient TEXT,
-    subject   TEXT,
-    origin    TEXT
-);
+```shell
+#!/bin/sh
+cd /path/to/smtp-logger/
+./index.js >> /tmp/smtp-logger.log 2>&1
 ```
 
-> Note: Uses `AUTOINCREMENT` for SQLite or `SERIAL` for PostgreSQL.
+Edit `/etc/aliases`:
+
+```bash
+logger: "|/tmp/log.sh"
+```
+
+Then update aliases:
+
+```bash
+sudo newaliases
+```
 
 ---
 
