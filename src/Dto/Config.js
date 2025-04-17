@@ -9,7 +9,8 @@ export default class Smtp_Log_Dto_Config {
     constructor(
         {
             Smtp_Log_Enum_Command$: CMD,
-        }) {
+        }
+    ) {
         /**
          * Create a new DTO and populate it with initialization data.
          * @param {Smtp_Log_Dto_Config.Dto} [data]
